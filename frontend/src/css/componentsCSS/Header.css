@@ -1,0 +1,489 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@400;500;600;700&display=swap');
+
+* {
+  -webkit-touch-callout: none;
+    -webkit-user-select: none;
+     -khtml-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+}
+
+/* ── Header shell ── */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 36px;
+  height: 62px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(7, 7, 15, 0.6);
+  backdrop-filter: blur(20px) saturate(1.4);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  border-bottom: 1px solid rgba(16, 185, 129, 0.22);
+  box-shadow: 0 1px 32px rgba(0, 0, 0, 0.4);
+  font-family: 'Rajdhani', sans-serif;
+}
+
+/* ── Left nav ── */
+.header-group-left {
+  display: flex;
+  align-items: center;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.header-left span {
+  position: relative;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  transition: color 0.2s, background 0.2s;
+}
+
+.header-left span:hover,
+.header-left span.active {
+  color: #6ee7b7;
+  background: rgba(16, 185, 129, 0.10);
+}
+
+/* ── Grupos dropdown ── */
+.grupos-dropdown {
+  position: fixed;
+  top: 62px;
+  left: 0;
+  right: 0;
+  z-index: 99;
+  background: rgba(2, 5, 12, 0.98);
+  backdrop-filter: blur(28px) saturate(1.6);
+  -webkit-backdrop-filter: blur(28px) saturate(1.6);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 0 36px 22px;
+  box-shadow: 0 16px 64px rgba(0, 0, 0, 0.75);
+  /* scan lines */
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 3px,
+    rgba(255, 255, 255, 0.007) 3px,
+    rgba(255, 255, 255, 0.007) 4px
+  );
+}
+
+/* ── Title bar ── */
+.grupos-title-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 10px 0 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.055);
+  margin-bottom: 16px;
+}
+
+.grupos-title-label {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  color: rgba(255, 255, 255, 0.28);
+}
+
+.grupos-title-deco {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.15);
+}
+
+/* ── Grid ── */
+.grupos-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 9px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ── Card ── */
+.grupo-card {
+  position: relative;
+  background: rgba(6, 11, 22, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  /* notched top-right corner */
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
+  overflow: hidden;
+  transition: transform 0.18s, border-color 0.18s;
+}
+
+/* subtle color bleed from top */
+.grupo-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 50% at 50% 0%, var(--gc) 0%, transparent 70%);
+  opacity: 0.07;
+  pointer-events: none;
+}
+
+.grupo-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+/* ── Top accent bar ── */
+.grupo-top-bar {
+  height: 3px;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Card body ── */
+.grupo-body {
+  padding: 7px 10px 10px;
+  position: relative;
+  z-index: 1;
+}
+
+.grupo-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.055);
+}
+
+.grupo-label-wrap {
+  display: flex;
+  align-items: baseline;
+  gap: 3px;
+}
+
+.grupo-code {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 7px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.22);
+}
+
+.grupo-letra {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 20px;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  filter: drop-shadow(0 0 6px var(--gc));
+}
+
+.grupo-index {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.13);
+  letter-spacing: 0.05em;
+}
+
+/* ── Team list ── */
+.grupo-equipos {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.grupo-equipos li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  overflow: hidden;
+}
+
+.eq-num {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 8px;
+  font-weight: 700;
+  flex-shrink: 0;
+  opacity: 0.9;
+}
+
+.eq-name {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.70);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1100px) {
+  .grupos-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+@media (max-width: 700px) {
+  .grupos-dropdown { padding: 0 14px 18px; }
+  .grupos-grid { grid-template-columns: repeat(3, 1fr); gap: 7px; }
+  .grupos-title-label { font-size: 8px; letter-spacing: 0.14em; }
+}
+
+
+/* ── Right ── */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.spansLinks {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 16px;
+  font-weight: 500;
+  padding: 6px 10px;
+  border-radius: 8px;
+  transition: color 0.2s, background 0.2s;
+}
+
+.spansLinks:hover {
+  color: #6ee7b7;
+  background: rgba(16, 185, 129, 0.10);
+}
+
+/* ── Join button ── */
+.btn-join {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.8px;
+  color: #fff;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  border: none;
+  padding: 8px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: box-shadow 0.22s, transform 0.15s, opacity 0.2s;
+}
+
+.btn-join:hover {
+  box-shadow: 0 4px 20px rgba(16, 185, 129, 0.50);
+  transform: translateY(-1px);
+}
+
+.btn-join:active {
+  transform: translateY(0);
+  opacity: 0.88;
+}
+
+/* ── Copa del Mundo 2026 center ── */
+.header-center-wc {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.wc-badge {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 5px 14px 5px 10px;
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.28);
+  border-radius: 10px;
+}
+
+.wc-trophy {
+  font-size: 18px;
+  line-height: 1;
+  filter: drop-shadow(0 0 6px rgba(251, 191, 36, 0.5));
+}
+
+.wc-badge-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.wc-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #6ee7b7;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.wc-year {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: #fbbf24;
+  white-space: nowrap;
+}
+
+.wc-sedes {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: 4px;
+}
+
+.wc-sede-flag {
+  height: 14px;
+  width: auto;
+  border-radius: 2px;
+  opacity: 0.88;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.wc-sede-flag:hover {
+  opacity: 1;
+  transform: scale(1.15);
+}
+
+/* ── Header wrapper (sticky container for header + markets) ── */
+.header-wrapper {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* ── Inline markets (inside header) ── */
+.header-center-markets {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.header-center-markets .market-card {
+  padding: 5px 12px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+.header-center-markets .market-card:hover {
+  background: rgba(255, 255, 255, 0.24);
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.header-center-markets .market-card img {
+  height: 26px;
+  filter: brightness(1.15) drop-shadow(0 1px 3px rgba(0,0,0,0.35));
+}
+
+/* ── Markets bar ── */
+.markets-bar {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 10px 36px;
+  background: rgba(4, 10, 8, 0.72);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(16, 185, 129, 0.14);
+}
+
+.markets-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: rgba(16, 185, 129, 0.7);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.markets-list {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.markets-list::-webkit-scrollbar { display: none; }
+
+.market-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 18px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(16, 185, 129, 0.12);
+  border-radius: 10px;
+  cursor: default;
+  flex-shrink: 0;
+  transition: background 0.2s, border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+
+.market-card:hover {
+  background: rgba(16, 185, 129, 0.08);
+  border-color: rgba(16, 185, 129, 0.35);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.12);
+}
+
+.market-card img {
+  height: 32px;
+  width: auto;
+  max-width: 72px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 4px rgba(0,0,0,0.4));
+  transition: filter 0.2s, transform 0.2s;
+}
+
+.market-card:hover img {
+  filter: drop-shadow(0 0 8px rgba(16, 185, 129, 0.30));
+  transform: scale(1.05);
+}
+
+.market-name {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.45);
+  white-space: nowrap;
+  transition: color 0.2s;
+}
+
+.market-card:hover .market-name {
+  color: #6ee7b7;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .header { padding: 0 20px; }
+  .markets-bar { padding: 8px 20px; gap: 14px; }
+}
+
+@media (max-width: 600px) {
+  .wc-badge-text { display: none; }
+  .wc-badge { padding: 5px 10px; }
+}
+
+@media (max-width: 540px) {
+  .header { padding: 0 14px; }
+  .header-group-left { display: none; }
+  .header-right { gap: 10px; }
+  .btn-join { padding: 7px 14px; font-size: 12px; }
+  .markets-bar { padding: 8px 14px; }
+  .markets-title { display: none; }
+}

@@ -1,0 +1,284 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  overflow-x: hidden;
+}
+
+:root {
+  --bg: #0d0d12;
+  --border: rgba(255, 255, 255, 0.1);
+  --border-hover: rgba(255, 255, 255, 0.22);
+  --text-primary: #f0f0f5;
+  --text-muted: rgba(240, 240, 245, 0.45);
+  --accent: #ffffff;
+  --accent-dark: #0d0d12;
+  --radius-sm: 10px;
+  --radius-lg: 24px;
+  --radius-pill: 999px;
+  --font-display: 'Syne', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+  --transition: 0.2s ease;
+}
+
+/* ─── Home button ─── */
+.home-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: background var(--transition), color var(--transition), border-color var(--transition);
+  backdrop-filter: blur(10px);
+}
+
+.home-btn:hover {
+  background: rgba(255, 255, 255, 0.14);
+  color: var(--text-primary);
+  border-color: var(--border-hover);
+}
+
+.home-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* ─── Page ─── */
+.register-page {
+  min-height: 100vh;
+  background-color: var(--bg);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+}
+
+/* ─── Particles full screen ─── */
+.particles-bg {
+  position: fixed !important;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 0;
+}
+
+/* ─── Center wrapper ─── */
+.register-center {
+  position: relative;
+  justify-content: center;
+  z-index: 10;
+  width: 100%;
+  max-width: 900px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 15px 24px;
+}
+
+/* ─── Card ─── */
+.register-card {
+  width: 100%;
+  max-width: 720px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 40px 36px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* ─── Titles ─── */
+.register-title {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+  margin-bottom: 32px;
+  justify-content: center;
+  display: flex;
+}
+
+/* ─── Form ─── */
+.register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+/* ─── Rows (2 columnas) ─── */
+.input-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+/* ─── Inputs ─── */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.input-group label {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.input-group input {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 13px 16px;
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color var(--transition), background var(--transition);
+  width: 100%;
+}
+
+.input-group input::placeholder {
+  color: rgba(240, 240, 245, 0.2);
+}
+
+.input-group input:focus {
+  border-color: var(--border-hover);
+  background: rgba(255, 255, 255, 0.07);
+}
+
+/* ─── Date input ─── */
+.input-group input[type="date"] {
+  color-scheme: dark;
+}
+
+.input-group input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(0.6);
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity var(--transition);
+}
+
+.input-group input[type="date"]::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+}
+
+/* ─── Button ─── */
+.register-btn {
+  display: block;
+  width: fit-content;
+  min-width: 160px;
+  margin: 6px auto 0;
+  background: var(--accent);
+  color: var(--accent-dark);
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 12px 32px;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: -0.01em;
+  transition: opacity var(--transition), transform var(--transition);
+}
+
+.register-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.register-btn:active {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.register-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.register-error,
+.register-success {
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-top: -6px;
+}
+
+.register-error {
+  color: #ff6b6b;
+}
+
+.register-success {
+  color: #6bff95;
+}
+
+/* ─── Login prompt ─── */
+.login-prompt {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.login-prompt a {
+  color: var(--text-primary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: opacity var(--transition);
+}
+
+.login-prompt a:hover {
+  opacity: 0.7;
+}
+
+/* ─── Divider ─── */
+.register-divider {
+  width: 100%;
+  height: 1px;
+  background: var(--border);
+}
+
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .register-card {
+    max-width: 95%;
+  }
+}
+
+@media (max-width: 520px) {
+  .register-card {
+    padding: 30px 20px;
+  }
+
+  .register-title {
+    font-size: 1.6rem;
+  }
+
+  .input-row {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,107 @@
+import { useState, useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import Particles from '../../../components/Particles';
+import Toast from '../../../components/Toast';
+import { loginUser } from '../../../services/authService';
+import { validateLogin } from '../../../utils/authValidations';
+import hiddenImg from '../../../assets/hidden.png';
+import sawImg from '../../../assets/saw.png';
+import './Login.css';
+
+export default function Login() {
+    const [form, setForm] = useState({ username: '', password: '' });
+    const [loading, setLoading] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
+    const [toast, setToast] = useState(null);
+
+    useEffect(() => {
+        AOS.init({ duration: 800, once: true });
+    }, []);
+
+    const handleChange = ({ target: { name, value } }) => {
+        setForm(prev => ({ ...prev, [name]: value }));
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const errorValidacion = validateLogin(form);
+        if (errorValidacion) { 
+            setToast({ message: errorValidacion, type: 'error' }); 
+            return; 
+        }
+
+        setLoading(true);
+        try {
+            const data = await loginUser(form);
+            localStorage.setItem('token', data.token);
+            window.location.href = data.rol === 'ADMIN' ? '/Admin' : '/Player';
+        } catch (err) {
+            setToast({ message: err.message, type: 'error' });
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    return (
+        <div className="login-page">
+            {toast && <Toast message={toast.message} type={toast.type} onClose={() => setToast(null)} />}
+            <a href="/" className="home-btn" aria-label="Ir al inicio">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z"/>
+                    <polyline points="9 21 9 12 15 12 15 21"/>
+                </svg>
+            </a>
+            <Particles className="particles-bg" />
+            <div className="login-center" data-aos="flip-left">
+                <div className="login-card">
+                    <h1 className="login-title">Login</h1>
+                    <form className="login-form" onSubmit={handleSubmit} autoComplete="off">
+
+                        <div className="input-group">
+                            <label>Usuario</label>
+                            <input
+                                type="text"
+                                name="username"
+                                value={form.username}
+                                onChange={handleChange}
+                            />
+                        </div>
+
+                        <div className="input-group">
+                            <label>Contraseña</label>
+                            <div className="password-wrapper">
+                                <input
+                                    type={showPassword ? 'text' : 'password'}
+                                    name="password"
+                                    value={form.password}
+                                    onChange={handleChange}
+                                />
+                                <button
+                                    type="button"
+                                    className="password-toggle"
+                                    onClick={() => setShowPassword(p => !p)}
+                                    aria-label={showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'}
+                                >
+                                    <img src={showPassword ? sawImg : hiddenImg} alt="" />
+                                </button>
+                            </div>
+                        </div>
+
+                        <button className="login-btn" disabled={loading}>
+                            {loading ? 'Cargando...' : 'Iniciar sesión'}
+                        </button>
+
+                        <p className="signup-prompt">
+                            ¿No tienes cuenta? <a href="/register">Regístrate</a>
+                        </p>
+                        <p className="signup-prompt">
+                            ¿Olvidaste tu contraseña? <a href="/reset-password">Restablécela aquí</a>
+                        </p>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    );
+}
