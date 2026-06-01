@@ -12,11 +12,11 @@ export const loginUser = async ({ username, password }) => {
 };
 
 export const buildRegisterPayload = (form) => ({
-    primer_nombre:      form.primer_nombre.trim(),
-    segundo_nombre:     form.segundo_nombre.trim() || null,
-    primer_apellido:    form.primer_apellido.trim(),
-    segundo_apellido:   form.segundo_apellido.trim() || null,
-    fecha_nacimiento:   form.fecha_nacimiento,
+    primer_nombre: form.primer_nombre.trim(),
+    segundo_nombre: form.segundo_nombre.trim() || null,
+    primer_apellido: form.primer_apellido.trim(),
+    segundo_apellido: form.segundo_apellido.trim() || null,
+    fecha_nacimiento: form.fecha_nacimiento,
     correo_electronico: form.correo_electronico.trim().toLowerCase(),
     username: form.username.trim(),
     password: form.password,
@@ -29,7 +29,8 @@ export const registerUser = async (payload) => {
         body: JSON.stringify(payload),
     });
     const data = await res.json();
-    if (!res.ok) throw new Error(data.message || 'Error al registrar usuario');
+    if (!res.ok) 
+        throw new Error(data.message || 'Error al registrar usuario');
     return data;
 };
 
@@ -38,13 +39,14 @@ export const resetPassword = async (form) => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-            username:        form.username.trim(),
+            username: form.username.trim(),
             currentPassword: form.currentPassword,
-            password:        form.password,
+            password: form.password,
             confirmPassword: form.confirmPassword,
         }),
     });
     const data = await res.json();
-    if (!res.ok) throw new Error(data.message || 'Error al restablecer la contraseña');
+    if (!res.ok) 
+        throw new Error(data.message || 'Error al restablecer la contraseña');
     return data;
 };
