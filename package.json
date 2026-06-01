@@ -1,0 +1,22 @@
+{
+  "name": "proyectobases",
+  "private": true,
+  "version": "1.0.0",
+  "proxy": "http://localhost:3000",
+  "description": "",
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run dev --workspace=backend\" \"npm run dev --workspace=frontend\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
