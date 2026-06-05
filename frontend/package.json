@@ -15,7 +15,7 @@
     "ogl": "^1.0.11",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
-    "react-router-dom": "^7.14.2",
+    "react-router-dom": "^7.17.0",
     "three": "^0.183.2"
   },
   "devDependencies": {
