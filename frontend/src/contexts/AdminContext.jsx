@@ -41,25 +41,25 @@ export function AdminProvider({ children }) {
         setAdmin(await res.json());
 
         const [rU, rE, rA, rP, rC, rPrem, rCanj] = await Promise.all([
-          fetch(`${API}/api/admin/usuarios`,     { headers: getHeaders() }),
-          fetch(`${API}/api/admin/equipos`,      { headers: getHeaders() }),
-          fetch(`${API}/api/admin/apuestas`,     { headers: getHeaders() }),
+          fetch(`${API}/api/admin/usuarios`, { headers: getHeaders() }),
+          fetch(`${API}/api/admin/equipos`, { headers: getHeaders() }),
+          fetch(`${API}/api/admin/apuestas`, { headers: getHeaders() }),
           fetch(`${API}/api/admin/puntuaciones`, { headers: getHeaders() }),
-          fetch(`${API}/api/admin/catalogos`,    { headers: getHeaders() }),
-          fetch(`${API}/api/admin/premios`,      { headers: getHeaders() }),
-          fetch(`${API}/api/admin/canjes`,       { headers: getHeaders() }),
+          fetch(`${API}/api/admin/catalogos`, { headers: getHeaders() }),
+          fetch(`${API}/api/admin/premios`, { headers: getHeaders() }),
+          fetch(`${API}/api/admin/canjes`, { headers: getHeaders() }),
         ]);
 
         const [uData, eData, aData, pData, premData, canjData] = await Promise.all([
           rU.json(), rE.json(), rA.json(), rP.json(), rPrem.json(), rCanj.json(),
         ]);
 
-        setUsuarios(Array.isArray(uData)    ? uData    : []);
-        setEquipos(Array.isArray(eData)     ? eData    : []);
-        setApuestas(Array.isArray(aData)    ? aData    : []);
-        setPunts(Array.isArray(pData)       ? pData    : []);
-        setPremios(Array.isArray(premData)  ? premData : []);
-        setCanjes(Array.isArray(canjData)   ? canjData : []);
+        setUsuarios(Array.isArray(uData) ? uData : []);
+        setEquipos(Array.isArray(eData) ? eData : []);
+        setApuestas(Array.isArray(aData) ? aData : []);
+        setPunts(Array.isArray(pData) ? pData : []);
+        setPremios(Array.isArray(premData) ? premData : []);
+        setCanjes(Array.isArray(canjData) ? canjData : []);
         setCatalogos(await rC.json());
       } catch {
         window.location.href = '/login';

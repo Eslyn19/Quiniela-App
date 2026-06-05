@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100..700&display=swap');
 
 * {
   -webkit-touch-callout: none;
@@ -298,17 +298,11 @@
 .wc-badge {
   display: flex;
   align-items: center;
-  gap: 9px;
-  padding: 5px 14px 5px 10px;
+  gap: 20px;
+  padding: 12px 24px 12px 20px;
   background: rgba(16, 185, 129, 0.08);
   border: 1px solid rgba(16, 185, 129, 0.28);
   border-radius: 10px;
-}
-
-.wc-trophy {
-  font-size: 18px;
-  line-height: 1;
-  filter: drop-shadow(0 0 6px rgba(251, 191, 36, 0.5));
 }
 
 .wc-badge-text {
@@ -327,24 +321,15 @@
   white-space: nowrap;
 }
 
-.wc-year {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  color: #fbbf24;
-  white-space: nowrap;
-}
-
 .wc-sedes {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 10px;
   margin-left: 4px;
 }
 
 .wc-sede-flag {
-  height: 14px;
+  height: 20px;
   width: auto;
   border-radius: 2px;
   opacity: 0.88;

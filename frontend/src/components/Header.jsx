@@ -59,10 +59,8 @@ const Header = () => {
 
         <div className="header-center-wc">
           <div className="wc-badge">
-            <span className="wc-trophy">🏆</span>
             <div className="wc-badge-text">
-              <span className="wc-title">Copa del Mundo</span>
-              <span className="wc-year">FIFA 2026</span>
+              <span className="wc-title">FWC 2026</span>
             </div>
             <div className="wc-sedes">
               {sedes.map(s => (
@@ -85,18 +83,15 @@ const Header = () => {
       {gruposOpen && (
         <div className="grupos-dropdown" ref={dropdownRef}>
           <div className="grupos-title-bar">
-            <span className="grupos-title-deco">◈</span>
-            <span className="grupos-title-label">FASE DE GRUPOS · FIFA WORLD CUP 2026</span>
-            <span className="grupos-title-deco">◈</span>
           </div>
           <div className="grupos-grid">
             {GRUPOS.map((g, gi) => (
               <div key={g.letra} className="grupo-card" style={{ '--gc': g.color }}>
-                <div className="grupo-top-bar" style={{ background: g.color, boxShadow: `0 0 10px ${g.color}99` }} />
+                <div className="grupo-top-bar" style={{ background: g.color, boxShadow: `0 10px 10px ${g.color}99` }} />
                 <div className="grupo-body">
                   <div className="grupo-header">
                     <div className="grupo-label-wrap">
-                      <span className="grupo-code">GRP</span>
+                      <span className="grupo-code">Grupo</span>
                       <span className="grupo-letra" style={{ color: g.color }}>{g.letra}</span>
                     </div>
                     <span className="grupo-index">{String(gi + 1).padStart(2, '0')}</span>

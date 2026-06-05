@@ -5,7 +5,7 @@ import "../../../css/pagesCSS/Home.css";
 import FloatingLines from "../../../components/FloatingLines";
 import LoadingScreen from "../../../components/LoadingScreen";
 
-import { TIPOS_PUNT, carouselSports, featuredBets, testimonials } from "./homeData";
+import { TIPOS_PUNT, carouselSports, testimonials } from "./homeData";
 
 function TipoCard({ tipo }) {
   return (
@@ -66,7 +66,7 @@ function BetRow({ bet, index }) {
 }
 
 export default function Home() {
-  const [fadeOut,    setFadeOut]    = useState(false);
+  const [fadeOut, setFadeOut] = useState(false);
   const [showLoader, setShowLoader] = useState(true);
 
   useEffect(() => {
@@ -86,7 +86,8 @@ export default function Home() {
 
         <div className="home-galaxy">
           <FloatingLines
-            linesGradient={["#45f56a", "#6f6f6f", "#6a6a6a"]}
+
+linesGradient={["#0f3d1f", "#1a6b3a", "#4a5a6a"]}
             enabledWaves={["top", "middle", "bottom"]}
             lineCount={8}
             lineDistance={8}
@@ -144,15 +145,6 @@ export default function Home() {
           </div>
           <div className="testimonials-list">
             {testimonials.map((t, i) => <TestimonialRow key={i} testimonio={t} index={i} />)}
-          </div>
-        </section>
-
-        <section id="sec-apuestas" className="section featured-section">
-          <div className="section-header" data-aos="fade-right">
-            <h2>Apuestas Destacadas</h2>
-          </div>
-          <div className="bets-list">
-            {featuredBets.map((b, i) => <BetRow key={i} bet={b} index={i} />)}
           </div>
         </section>
 

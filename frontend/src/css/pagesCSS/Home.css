@@ -77,8 +77,7 @@
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  background: rgba(10, 40, 26, 0.85);
-  border: 1px solid var(--border);
+  border: 4px solid var(--border);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -115,15 +114,6 @@
 }
 
 .testimonials-section > * { max-width: 1200px; margin-left: auto; margin-right: auto; }
-
-.featured-section {
-  background: transparent;
-  border: none;
-  max-width: 100%;
-  padding: 56px 48px;
-}
-
-.featured-section > * { max-width: 1200px; margin-left: auto; margin-right: auto; }
 
 .about-section { background: transparent; }
 
@@ -237,147 +227,6 @@
   white-space: nowrap;
   flex-shrink: 0;
   letter-spacing: 3px;
-}
-
-/* ── Bets List ── */
-.bets-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
-.bet-row {
-  background: rgba(255, 255, 255, 0.04);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid var(--border-soft);
-  border-radius: 14px;
-  padding: 22px 28px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  cursor: pointer;
-  transition: border-color 0.22s, transform 0.22s, background 0.22s, box-shadow 0.22s;
-}
-
-.bet-row:hover {
-  border-color: var(--accent);
-  background: rgba(16, 185, 129, 0.08);
-  transform: translateX(8px) scale(1.01);
-  box-shadow: 0 0 28px rgba(16, 185, 129, 0.16);
-}
-
-.bet-row:active {
-  transform: translateX(12px) scale(1.02);
-  background: rgba(16, 185, 129, 0.14);
-  box-shadow: 0 0 44px rgba(16, 185, 129, 0.28);
-}
-
-.bet-row.hot {
-  border-color: rgba(16, 185, 129, 0.45);
-  background: rgba(16, 185, 129, 0.10);
-}
-
-.bet-left {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  flex: 1;
-}
-
-.hot-badge {
-  font-family: var(--font-display);
-  font-size: 10px;
-  font-weight: 700;
-  color: var(--accent);
-  background: var(--accent-soft);
-  border: 1px solid rgba(16, 185, 129, 0.30);
-  padding: 4px 10px;
-  border-radius: 10px;
-  display: inline-block;
-  width: fit-content;
-  letter-spacing: 0.05em;
-}
-
-.bet-label {
-  font-family: var(--font-display);
-  font-size: 16px;
-  font-weight: 600;
-  color: #fff;
-  margin: 0;
-  letter-spacing: 0.02em;
-}
-
-.bet-tipo {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  margin-bottom: 4px;
-}
-
-.bet-tipo-icon { font-size: 15px; }
-
-.bet-tipo-text {
-  font-family: var(--font-display);
-  font-size: 15px;
-  font-weight: 700;
-  color: #fff;
-  letter-spacing: 0.02em;
-}
-
-.bet-liga-badge {
-  font-family: var(--font-display);
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: 0.07em;
-  color: var(--accent);
-  background: var(--accent-soft);
-  border: 1px solid rgba(16, 185, 129, 0.28);
-  padding: 2px 8px;
-  border-radius: 10px;
-}
-
-.bet-match {
-  font-size: 11px;
-  font-weight: 400;
-  color: var(--text-muted);
-  letter-spacing: 0.03em;
-}
-
-.bet-right {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  flex-shrink: 0;
-}
-
-.bet-pred-block {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2px;
-  min-width: 110px;
-}
-
-.bet-pred-label {
-  font-family: var(--font-display);
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: 0.10em;
-  color: rgba(255,255,255,0.35);
-  text-transform: uppercase;
-}
-
-.bet-pred-value {
-  font-family: var(--font-display);
-  font-size: 20px;
-  font-weight: 800;
-  color: var(--accent);
-  text-align: center;
-  text-shadow: 0 0 16px rgba(16, 185, 129, 0.45);
 }
 
 .about-centered {
@@ -645,7 +494,6 @@
   .hero-content { padding: 40px 20px; }
   .section { padding: 28px 16px; }
   .testimonial-row { flex-direction: column; align-items: flex-start; }
-  .bet-row { flex-direction: column; align-items: flex-start; }
-  .bet-right { width: 100%; justify-content: space-between; }
+
   .legal-bar { padding: 20px 16px; }
 }
