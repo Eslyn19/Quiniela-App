@@ -11,10 +11,8 @@ const ganador = (local, visitante) => {
 };
 
 // Calcula los puntos que gana/pierde un pronóstico dado el tipo de puntuación y el resultado real.
-export const calcularPuntos = (
-    tipo, puntosBase, multiplicador, penalizacion,
-    pronoLocal, pronoVisitante, resLocal, resVisitante
-) => {
+export const calcularPuntos = (tipo, puntosBase, multiplicador, penalizacion, pronoLocal, pronoVisitante, resLocal, resVisitante) => 
+{
     const premio = parseFloat(puntosBase) * parseFloat(multiplicador);
     const castigo = -parseFloat(penalizacion);
 

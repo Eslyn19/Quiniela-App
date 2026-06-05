@@ -10,11 +10,11 @@ import {
 
 const router = Router();
 
-router.get('/premios',              obtenerPremios);
-router.post('/premios',             crearPremio);
-router.put('/premios/:id',          actualizarPremio);
-router.delete('/premios/:id',       eliminarPremio);
-router.get('/canjes',               obtenerCanjes);
-router.patch('/canjes/:id/estado',  actualizarEstadoCanje);
+router.get('/premios', obtenerPremios);
+router.post('/premios', crearPremio);
+router.put('/premios/:id', actualizarPremio);
+router.delete('/premios/:id', eliminarPremio);
+router.get('/canjes', obtenerCanjes);
+router.patch('/canjes/:id/estado', actualizarEstadoCanje);
 
 export default router;

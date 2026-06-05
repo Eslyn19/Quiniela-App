@@ -23,9 +23,9 @@ export const actualizarPuntuacion = async (req, res) => {
         }
 
         await IDtipoPuntuacion.update({
-            puntos_base:   parseFloat(puntos_base)   ?? IDtipoPuntuacion.puntos_base,
+            puntos_base: parseFloat(puntos_base) ?? IDtipoPuntuacion.puntos_base,
             multiplicador: parseFloat(multiplicador) ?? IDtipoPuntuacion.multiplicador,
-            penalizacion:  parseFloat(penalizacion)  ?? IDtipoPuntuacion.penalizacion,
+            penalizacion: parseFloat(penalizacion) ?? IDtipoPuntuacion.penalizacion,
         });
 
         return res.json(IDtipoPuntuacion);
