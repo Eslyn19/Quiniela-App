@@ -8,12 +8,13 @@ import { validateResetPassword } from '../../../utils/authValidations';
 import hiddenImg from '../../../assets/hidden.png';
 import sawImg from '../../../assets/saw.png';
 import './ResetPassword.css';
+import homeImg from "../../../assets/home.png";
 
 export default function ResetPassword() {
     const [form, setForm] = useState({
-        username:        '',
+        username: '',
         currentPassword: '',
-        password:        '',
+        password: '',
         confirmPassword: '',
     });
     const [loading, setLoading] = useState(false);
@@ -49,6 +50,9 @@ export default function ResetPassword() {
     return (
         <div className="login-page">
             {toast && <Toast message={toast.message} type={toast.type} onClose={() => setToast(null)} />}
+            <a href="/" className="home-btn" aria-label="Ir al inicio">
+                <img src={homeImg} alt="Inicio" />
+            </a>
             <Particles className="particles-bg" />
             <div className="login-center" data-aos="flip-left">
                 <div className="login-card">

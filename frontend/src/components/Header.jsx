@@ -75,7 +75,7 @@ const Header = () => {
             <span className="spansLinks">Iniciar Sesion</span>
           </Link>
           <Link to="/register" style={{ textDecoration: "none" }}>
-            <button className="btn-join">UNIRTE</button>
+            <button className="btn-join">Registrarse</button>
           </Link>
         </div>
       </header>

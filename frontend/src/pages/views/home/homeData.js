@@ -1,36 +1,44 @@
-const TW = 'https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg';
-const FLAG = (code) => `https://flagcdn.com/w40/${code}.png`;
+import marcadorImg from '../../../assets/marcador.png';
+import resultadoImg from '../../../assets/match.png';
+import primerGoleadorImg from '../../../assets/balon.png';
+import masmenosgolesImg from '../../../assets/stats.png';
+import trofeoImg from '../../../assets/trofeo.png';
 
 export const TIPOS_PUNT = [
   {
-    svg: `${TW}/1f3af.svg`,
-    nombre: "Marcador Exacto",
-    desc: "Predice el marcador final. Si aciertas exacto ganas base × multiplicador; si solo aciertas el ganador, ganas la base.",
-    color: "#10b981",
+    imagen: marcadorImg,
+    nombre: 'Marcador Exacto',
+    desc: 'Predice el marcador final. Si aciertas exacto ganas base × multiplicador; si solo aciertas el ganador, ganas la base.',
+    color: '#10b981',
+    id: 'marcador-exacto',
   },
   {
-    svg: `${TW}/2694.svg`,
-    nombre: "Resultado",
-    desc: "Victoria local, empate o victoria visitante. La forma más directa de apostar a un partido.",
-    color: "#10b981",
+    imagen: resultadoImg,
+    nombre: 'Resultado',
+    desc: 'Victoria local, empate o victoria visitante. La forma más directa de apostar a un partido.',
+    color: '#10b981',
+    id: 'resultado',
   },
   {
-    svg: `${TW}/26bd.svg`,
-    nombre: "Primer Goleador",
-    desc: "El equipo con más goles se considera el primer anotador. Sin goles en el partido aplica penalización.",
-    color: "#10b981",
+    imagen: primerGoleadorImg,
+    nombre: 'Primer Goleador',
+    desc: 'El equipo con más goles se considera el primer anotador. Sin goles en el partido aplica penalización.',
+    color: '#10b981',
+    id: 'primer-goleador',
   },
   {
-    svg: `${TW}/1f4ca.svg`,
-    nombre: "Más / Menos Goles",
-    desc: "¿Habrá más o menos de 2.5 goles totales? Acierta el umbral correcto y suma puntos.",
-    color: "#10b981",
+    imagen: masmenosgolesImg,
+    nombre: 'Más / Menos Goles',
+    desc: '¿Habrá más o menos de 2.5 goles totales? Acierta el umbral correcto y suma puntos.',
+    color: '#10b981',
+    id: 'mas-menos-goles',
   },
   {
-    svg: `${TW}/1f3c6.svg`,
-    nombre: "Ganador del Torneo",
-    desc: "Predice el campeón final del torneo. El tipo más difícil y con mayor recompensa.",
-    color: "#10b981",
+    imagen: trofeoImg,
+    nombre: 'Ganador del Torneo',
+    desc: 'Predice el campeón final del torneo. El tipo más difícil y con mayor recompensa.',
+    color: '#10b981',
+    id: 'ganador-torneo',
   },
 ];
 
@@ -40,6 +48,7 @@ const G = {
   I: "#2a4d1a", J: "#4d2a1a", K: "#1a1a4d", L: "#3d4d1a",
 };
 
+const FLAG = (code) => `https://flagcdn.com/w40/${code}.png`;
 export const sports = [
   { id: 1, grupo: 'A', name: "México", svg: FLAG('mx'), color: G.A },
   { id: 2, grupo: 'A', name: "Sudáfrica", svg: FLAG('za'), color: G.A },

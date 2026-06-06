@@ -17,7 +17,7 @@ const TIPOS_INFO = {
 
 export default function SeccionPuntuaciones() {
   const { punts: puntuaciones, setPunts: setPuntuaciones, getHeaders } = useAdmin();
-    const [editMap, setEditMap]     = useState({});
+    const [editMap, setEditMap] = useState({});
     const [savingMap, setSavingMap] = useState({});
     const [feedbackMap, setFeedbackMap] = useState({});
 
@@ -25,9 +25,9 @@ export default function SeccionPuntuaciones() {
         setEditMap(prev => ({
             ...prev,
             [p.id_tipo_puntuacion]: {
-                puntos_base:   String(p.puntos_base),
+                puntos_base: String(p.puntos_base),
                 multiplicador: String(p.multiplicador),
-                penalizacion:  String(p.penalizacion),
+                penalizacion: String(p.penalizacion),
             },
         }));
     };
@@ -48,12 +48,12 @@ export default function SeccionPuntuaciones() {
 
         try {
             const res = await fetch(`${API}/api/admin/puntuaciones/${id}`, {
-                method:  'PATCH',
+                method: 'PATCH',
                 headers: getHeaders(),
-                body:    JSON.stringify({
-                    puntos_base:   parseFloat(vals.puntos_base),
+                body: JSON.stringify({
+                    puntos_base: parseFloat(vals.puntos_base),
                     multiplicador: parseFloat(vals.multiplicador),
-                    penalizacion:  parseFloat(vals.penalizacion),
+                    penalizacion: parseFloat(vals.penalizacion),
                 }),
             });
             const data = await res.json();
@@ -82,8 +82,8 @@ export default function SeccionPuntuaciones() {
             <div className="punt-grid">
                 {puntuaciones.map(p => {
                     const editing = editMap[p.id_tipo_puntuacion];
-                    const saving  = savingMap[p.id_tipo_puntuacion];
-                    const fb      = feedbackMap[p.id_tipo_puntuacion];
+                    const saving = savingMap[p.id_tipo_puntuacion];
+                    const fb = feedbackMap[p.id_tipo_puntuacion];
 
                     return (
                         <div key={p.id_tipo_puntuacion} className="punt-card">

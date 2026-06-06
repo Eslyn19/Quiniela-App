@@ -8,13 +8,13 @@
   box-shadow: 0 -1px 32px rgba(0, 0, 0, 0.4);
   text-align: center;
   padding: 28px 48px 24px;
-  font-family: 'Rajdhani', sans-serif;
+  font-family: 'Crimson Text', serif;
   position: relative;
   z-index: 10;
 }
 
 .footer-legal {
-  font-size: 12px;
+  font-size: 15px;
   color: rgba(255, 255, 255, 0.32);
   line-height: 1.8;
   max-width: 860px;
@@ -22,7 +22,7 @@
 }
 
 .footer-gamble {
-  font-size: 11px;
+  font-size: 14px;
   color: rgba(52, 211, 153, 0.60);
   margin: 0 auto 0;
   letter-spacing: 0.03em;
@@ -44,8 +44,8 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
-  font-family: 'Orbitron', sans-serif;
-  font-size: 10px;
+font-family: 'Crimson Text', serif;
+  font-size: 14px;
   font-weight: 500;
   letter-spacing: 0.08em;
   color: rgba(255, 255, 255, 0.28);

@@ -212,7 +212,7 @@
 
 .testimonial-text {
   flex: 1;
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 400;
   color: rgba(255, 255, 255, 0.82);
   margin: 0;
@@ -238,13 +238,13 @@
   -webkit-backdrop-filter: blur(10px) saturate(1.2);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-top: 2px solid var(--accent);
-  border-radius: 18px;
+  border-radius: 30px;
   padding: 40px 48px;
 }
 
 .about-centered h2 {
   font-family: var(--font-display);
-  font-size: 28px;
+  font-size: 30px;
   font-weight: 700;
   margin: 10px 0 20px;
   color: var(--accent);
@@ -253,7 +253,7 @@
 }
 
 .about-centered p {
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 400;
   color: rgba(255, 255, 255, 0.70);
   line-height: 1.9;
@@ -274,22 +274,30 @@
   margin-top: 24px;
 }
 
-.about-tag {
-  font-family: var(--font-display);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  color: var(--accent);
-  background: rgba(16, 185, 129, 0.10);
-  border: 1px solid rgba(16, 185, 129, 0.28);
-  padding: 5px 14px;
-  border-radius: 20px;
-  transition: background 0.2s, box-shadow 0.2s;
+.about-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+.about-tags img {
+  width: 100px;
+  height: 60px;
+  object-fit: contain;
+  padding: 8px;
+  border-radius: 12px;
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.about-tags img:hover {
+  transform: scale(1.08);
 }
 
 .about-tag:hover {
   background: rgba(16, 185, 129, 0.20);
-  box-shadow: 0 0 10px rgba(16, 185, 129, 0.18);
 }
 
 @media (max-width: 640px) {
@@ -371,7 +379,7 @@
 }
 
 .legal-bar p {
-  font-size: 12px;
+  font-size: 20px;
   color: rgba(255, 255, 255, 0.32);
   line-height: 1.8;
   max-width: 900px;
@@ -380,7 +388,7 @@
 
 .legal-gamble {
   color: rgba(52, 211, 153, 0.65) !important;
-  font-size: 12px !important;
+  font-size: 20px !important;
 }
 
 .legal-gamble strong {
@@ -403,7 +411,7 @@
 
 .tipos-punt-label {
   font-family: var(--font-display);
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.18em;
   color: var(--accent);
@@ -414,7 +422,6 @@
   font-family: var(--font-display);
   font-size: 22px;
   font-weight: 700;
-  color: #fff;
   margin: 6px 0 0;
   letter-spacing: 0.04em;
 }
@@ -432,11 +439,11 @@
   text-align: center;
   gap: 10px;
   padding: 22px 16px 20px;
-  border-radius: 14px;
+  border-radius: 25px;
   background: rgba(0, 0, 0, 0.22);
   backdrop-filter: blur(6px) saturate(1.1);
   -webkit-backdrop-filter: blur(6px) saturate(1.1);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 2px solid rgba(255, 255, 255, 0.08);
   border-top: 2px solid var(--accent);
   transition: background 0.22s, transform 0.18s, box-shadow 0.22s;
   --card-color: var(--accent);
@@ -444,8 +451,8 @@
 
 .tipo-card:hover {
   background: rgba(0, 0, 0, 0.34);
-  transform: translateY(-4px);
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.28), 0 0 0 1px var(--card-color);
+  transform: translateY(-10px);
+  box-shadow: 0 15px 28px rgba(0, 0, 0, 0.28), 0 0 0 1px var(--card-color);
 }
 
 .tipo-icon {
@@ -456,22 +463,20 @@
   width: 48px;
   height: 48px;
   object-fit: contain;
-  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.4));
 }
 
 .tipo-nombre {
   font-family: var(--font-display);
-  font-size: 12px;
+  font-size: 15px;
   font-weight: 700;
   color: var(--card-color);
   margin: 0;
   letter-spacing: 0.05em;
-  text-shadow: 0 0 12px color-mix(in srgb, var(--card-color) 40%, transparent);
 }
 
 .tipo-desc {
   font-family: var(--font-body);
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 400;
   color: rgba(255, 255, 255, 0.60);
   margin: 0;
@@ -496,4 +501,11 @@
   .testimonial-row { flex-direction: column; align-items: flex-start; }
 
   .legal-bar { padding: 20px 16px; }
+}
+
+.tipo-icon img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.4));
 }

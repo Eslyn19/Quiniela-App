@@ -56,9 +56,11 @@
   border-color: var(--border-hover);
 }
 
-.home-btn svg {
+.home-btn img {
   width: 18px;
   height: 18px;
+  object-fit: contain;
+  display: block;
 }
 
 /* ─── Page ─── */

@@ -5,13 +5,19 @@ import "../../../css/pagesCSS/Home.css";
 import FloatingLines from "../../../components/FloatingLines";
 import LoadingScreen from "../../../components/LoadingScreen";
 
+import sqlServerImg from "../../../assets/sql-server.png";
+import nodejsImg from "../../../assets/node.png";
+import reactImg from "../../../assets/react.png";
+import balonImg from "../../../assets/balon.png";
+import copaImg from "../../../assets/copa.png";
+
 import { TIPOS_PUNT, carouselSports, testimonials } from "./homeData";
 
 function TipoCard({ tipo }) {
   return (
     <div className="tipo-card" style={{ "--card-color": tipo.color }}>
       <div className="tipo-icon">
-        <img src={tipo.svg} alt={tipo.nombre} draggable={false} />
+        <img src={tipo.imagen} alt={tipo.nombre} draggable={false} />
       </div>
       <p className="tipo-nombre">{tipo.nombre}</p>
       <p className="tipo-desc">{tipo.desc}</p>
@@ -130,11 +136,11 @@ linesGradient={["#0f3d1f", "#1a6b3a", "#4a5a6a"]}
               parámetros de puntuación directamente desde el panel de control.
             </p>
             <div className="about-tags">
-              <span className="about-tag">SQL Server 2022</span>
-              <span className="about-tag">Node.js</span>
-              <span className="about-tag">React</span>
-              <span className="about-tag">48 Selecciones</span>
-              <span className="about-tag">Copa del Mundo 2026</span>
+              <img src={sqlServerImg} alt="SQL Server" />
+              <img src={nodejsImg} alt="Node.js" />
+              <img src={reactImg} alt="React" />
+              <img src={balonImg} alt="Balón" />
+              <img src={copaImg} alt="Copa del Mundo" />
             </div>
           </div>
         </section>

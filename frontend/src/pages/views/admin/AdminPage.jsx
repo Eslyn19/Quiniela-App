@@ -73,11 +73,11 @@ function AdminDashboard() {
       </div>
 
       <header className="admin-dock-header">
-        <StarBorder as="div" className="admin-badge-border" color="magenta" speed="6s">
+        <StarBorder as="div" className="admin-badge-border" color="magenta" speed="2s">
           Admin
         </StarBorder>
         <Dock items={dockItems} panelHeight={60} magnification={76} baseItemSize={46} distance={140} />
-        <StarBorder as="div" className="admin-whoami-border" color="cyan" speed="4s">
+        <StarBorder as="div" className="admin-whoami-border" color="cyan" speed="2s">
           {admin?.username}
         </StarBorder>
       </header>
