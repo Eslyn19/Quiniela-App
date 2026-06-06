@@ -25,8 +25,8 @@ GO
 
 -- Crar usuario para la conexion SQL Authentication e ingreso
 -- a la DB con permisos de administrador.
-CREATE LOGIN [admin] WITH PASSWORD = 'root';
-CHECK_POLICY = OFF;
+CREATE LOGIN [admin] WITH PASSWORD = 'root' 
+CHECK_POLICY = OFF, 
 CHECK_EXPIRATION = OFF;
 GO
 
