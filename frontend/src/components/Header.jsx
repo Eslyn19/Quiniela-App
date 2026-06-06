@@ -1,15 +1,18 @@
 import { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import "../css/componentsCSS/Header.css";
+import mexicoFlag from "../assets/mexico.png";
+import canadaFlag from "../assets/canada.png";
+import usaFlag from "../assets/usa.png";
 
 const sedes = [
-  { name: "USA",    flag: "https://flagcdn.com/w20/us.png" },
-  { name: "México", flag: "https://flagcdn.com/w20/mx.png" },
-  { name: "Canadá", flag: "https://flagcdn.com/w20/ca.png" },
+  { name: "USA",    flag: usaFlag },
+  { name: "México", flag: mexicoFlag },
+  { name: "Canadá", flag: canadaFlag },
 ];
 
 const GRUPOS = [
-  { letra: 'A', color: '#ef4444', equipos: ['Mexico',       'Sudafrica',    'Corea del Sur', 'Chequia']        },
+  { letra: 'A', color: '#ef4444', equipos: ['Mexico',       'Sudafrica',      'Corea del Sur', 'Chequia']      },
   { letra: 'B', color: '#f97316', equipos: ['Canada',       'Bosnia-Herzegovina', 'Qatar',   'Suiza']          },
   { letra: 'C', color: '#f59e0b', equipos: ['Brasil',       'Marruecos',    'Haiti',         'Escocia']        },
   { letra: 'D', color: '#22c55e', equipos: ['Estados Unidos','Paraguay',    'Australia',     'Turquia']        },
