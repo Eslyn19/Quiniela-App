@@ -19,8 +19,8 @@ export const registrarUsuario = async (req, res) => {
             fecha_nacimiento: datos.fecha_nacimiento
         }, { transaction: t });
 
+        // Encriptar contraseña antes de guardar
         const hashedPass = await hashPassword(datos.password);
-
         const nuevoUsuario = await Usuario.create(
         {
             id_persona: nuevaPersona.id_persona,
@@ -43,8 +43,6 @@ export const registrarUsuario = async (req, res) => {
 
     } catch (error) {
         await t.rollback();
-        return res.status(500).json({
-            message: `Error al registrar usuario, ${error.message}`
-        });
+        return res.status(500).json({ message: "Error al registrar usuario" });
     }
 };

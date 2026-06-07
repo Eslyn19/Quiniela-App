@@ -10,23 +10,17 @@ export const verificarJugador = async (req, res) => {
         });
 
         if (!estado || estado.rol !== 'JUGADOR' || estado.estado !== 'APROBADO') {
-            return res.status(403).json({ 
-                message: 'Acceso denegado' 
-            });
+            return res.status(403).json({ message: 'Acceso denegado' });
         }
 
         const usuario = await Usuario.findByPk(req.user.id_usuario);
         if (!usuario) {
-            return res.status(404).json({ 
-                message: 'Usuario no encontrado' 
-            });
+            return res.status(404).json({ message: 'Usuario no encontrado' });
         }
 
         const persona = await Persona.findByPk(usuario.id_persona);
         if (!persona) {
-            return res.status(404).json({ 
-                message: 'Información personal no encontrada' 
-            });
+            return res.status(404).json({ message: 'No existen creedenciales' });
         }
 
         return res.json({

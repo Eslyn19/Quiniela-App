@@ -7,9 +7,13 @@ const camposPresentes = (datos) => {
         username,
         password
     } = datos;
-    return primer_nombre && primer_apellido && 
-           fecha_nacimiento && correo_electronico && 
-           username && password;
+
+    return primer_nombre && 
+           primer_apellido && 
+           fecha_nacimiento && 
+           correo_electronico && 
+           username && 
+           password;
 };
 
 const emailValido = (email) => {
@@ -40,9 +44,7 @@ export const validarRegistro = (req, res, next) => {
     const datos = req.body;
 
     if (!camposPresentes(datos)) {
-        return res.status(400).json({
-            message: "Todos los campos obligatorios deben estar presentes."
-        });
+        return res.status(400).json({ message: "Todos los campos son obligatorios" });
     }
 
     if (!esMayorDeEdad(datos.fecha_nacimiento)) {
@@ -52,14 +54,12 @@ export const validarRegistro = (req, res, next) => {
     }
 
     if (!fechaNacValida(datos.fecha_nacimiento)) {
-        return res.status(400).json({
-            message: "La fecha de nacimiento no puede ser mayor a la fecha actual."
-        });
+        return res.status(400).json({ message: "Fecha seleccionada invalida." });
     }
 
     if (!emailValido(datos.correo_electronico)) {
         return res.status(400).json({
-            message: "El formato del correo electrónico no es válido."
+            message: "Formato de correo electrónico no válido."
         });
     }
 

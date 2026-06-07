@@ -13,11 +13,11 @@ export const validarResetPassword = (req, res, next) => {
     req.body.username = username.trim().toLowerCase();
 
     if (typeof username !== "string" || username.trim().length < 3) {
-        return res.status(400).json({ message: "Usuario inválido" });
+        return res.status(400).json({ message: "Usuario invalido" });
     }
 
     if (typeof currentPassword !== "string" || currentPassword.length < 6) {
-        return res.status(400).json({ message: "Contraseña actual inválida" });
+        return res.status(400).json({ message: "Contraseña actual invalida" });
     }
 
     if (typeof password !== "string" || password.length < 6) {

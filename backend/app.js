@@ -1,10 +1,12 @@
 import express from 'express';
 import cors from "cors";
 import path from 'path';
+
 import { fileURLToPath } from 'url';
 import { verifyToken } from './src/middlewares/AuthToken.js';
 import { isAdmin, isPlayer } from './src/middlewares/RoleGuard.js';
 import { obtenerRankingGlobal } from './src/controllers/playerController/ApuestasJugadorController.js';
+
 import playerRoutes from './src/routes/playerRoutes/Jugador.routes.js';
 import playerApuestasRoutes from './src/routes/playerRoutes/Apuestas.routes.js';
 import playerEquiposRoutes from './src/routes/playerRoutes/Equipos.routes.js';
@@ -30,14 +32,27 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use('/api/registro', authRoutes);
 app.get('/api/public/ranking-global', obtenerRankingGlobal);
 
-app.use('/api/admin', verifyToken, isAdmin,
-  adminRoutes, equiposRoutes, apuestasRoutes,
-  catalogoRoutes, puntuacionRoutes, entidadRoutes,
-  resultadoRoutes, adminPremiosRoutes, uploadRoutes
+app.use('/api/admin', 
+  verifyToken, 
+  isAdmin,
+  adminRoutes, 
+  equiposRoutes, 
+  apuestasRoutes,
+  catalogoRoutes, 
+  puntuacionRoutes, 
+  entidadRoutes,
+  resultadoRoutes, 
+  adminPremiosRoutes, 
+  uploadRoutes
 );
 
-app.use('/api/player', verifyToken, isPlayer,
-  playerRoutes, playerApuestasRoutes, playerEquiposRoutes, playerPremiosRoutes
+app.use('/api/player', 
+  verifyToken, 
+  isPlayer,
+  playerRoutes, 
+  playerApuestasRoutes, 
+  playerEquiposRoutes, 
+  playerPremiosRoutes
 );
 
 export default app;

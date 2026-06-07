@@ -14,14 +14,17 @@ export const obtenerPuntuaciones = async (req, res) => {
 };
 
 export const actualizarPuntuacion = async (req, res) => {
-    const { puntos_base, multiplicador, penalizacion } = req.body;
+    const { puntos_base, 
+            multiplicador, 
+            penalizacion } = req.body;
 
     try {
         const IDtipoPuntuacion = await TipoPuntuacion.findByPk(req.params.id);
         if (!IDtipoPuntuacion) {
             return res.status(404).json({ message: 'Tipo no encontrado' });
         }
-
+        
+        // Si es un tipo fijo, no se permite cambiar el nombre ni el tipo de apuesta
         await IDtipoPuntuacion.update({
             puntos_base: parseFloat(puntos_base) ?? IDtipoPuntuacion.puntos_base,
             multiplicador: parseFloat(multiplicador) ?? IDtipoPuntuacion.multiplicador,

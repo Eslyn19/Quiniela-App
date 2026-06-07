@@ -7,14 +7,14 @@ export const resetPassword = async (req, res) => {
     try {
         const usuario = await Usuario.findOne({ where: { username } });
 
-        if (!usuario) {
+        if (!usuario) 
             return res.status(404).json({ message: "Usuario no encontrado" });
-        }
+
 
         const valido = await comparePassword(currentPassword, usuario.pass);
-        if (!valido) {
+        if (!valido) 
             return res.status(401).json({ message: "Datos inválidos" });
-        }
+        
 
         const hashedPass = await hashPassword(password);
         await usuario.update({ pass: hashedPass });
@@ -24,7 +24,7 @@ export const resetPassword = async (req, res) => {
         });
     } catch (error) {
         return res.status(500).json({
-            message: `Error al restablecer contraseña!, ${error.message}`
+            message: "Error al restablecer contraseña!"
         });
     }
 };

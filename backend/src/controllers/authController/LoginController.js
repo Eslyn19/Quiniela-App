@@ -9,15 +9,12 @@ export const ingresarUsuario = async (req, res) => {
     try {
         const usuario = await Usuario.findOne({ where: { username } });
 
-        if (!usuario) return res.status(401).json({
-            message: "Credenciales inválidas"
-        });
+        if (!usuario) 
+            return res.status(401).json({ message: "Credenciales inválidas"});
 
         const isPasswordValid = await comparePassword(password, usuario.pass);
-
-        if (!isPasswordValid) return res.status(401).json({
-            message: "Credenciales inválidas"
-        });
+        if (!isPasswordValid) 
+            return res.status(401).json({ message: "Credenciales inválidas"});
 
         const estadoReg = await EstadoUsuario.findOne({
             where: { id_usuario: usuario.id_usuario }
@@ -25,15 +22,15 @@ export const ingresarUsuario = async (req, res) => {
 
         if (!estadoReg || estadoReg.estado !== 'APROBADO') {
             const mensajes = {
-                PENDIENTE: 'Cuenta pendiente de aprobación.',
+                PENDIENTE: 'Cuenta pendiente de aprobar.',
                 RECHAZADO: 'Tu cuenta ha sido rechazada.',
-                SUSPENDIDO: 'Tu cuenta ha sido suspendida.',
+                SUSPENDIDO: 'Tu cuenta fue suspendida.',
             };
             return res.status(403).json({
                 message: mensajes[estadoReg?.estado] ?? 'Acceso denegado.'
             });
         }
-
+        // Generar token JWT
         const token = jwt.sign(
             { id_usuario: usuario.id_usuario, username: usuario.username },
             process.env.JWT_SECRET,
@@ -47,8 +44,7 @@ export const ingresarUsuario = async (req, res) => {
             rol: estadoReg.rol,
         });
     } catch (error) {
-        return res.status(500).json({
-            message: 'Error interno del sistema'
-        });
+        // Error de servidor, no exponer detalles específicos
+        return res.status(500).json({ message: 'Error interno del sistema'});
     }
 };

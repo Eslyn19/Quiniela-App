@@ -4,8 +4,6 @@ import Pronostico from '../../models/Pronostico.js';
 import Evento from '../../models/Evento.js';
 import Apuesta from '../../models/Apuesta.js';
 
-// Llamar PROC desde la base de datos para obtener historial 
-// de apuestas del jugador
 export const obtenerApuestasJugador = async (req, res) => {
     try {
         const [apuestas] = await sequelize.query(`
@@ -15,7 +13,7 @@ export const obtenerApuestasJugador = async (req, res) => {
         return res.json(apuestas);
     } catch (error) {
         return res.status(500).json({ 
-            message: `Metodo no encontrado en DB, ${error.message}` 
+            message: "Error al obtener apuestas del jugador"
         });
     }
 };
@@ -57,13 +55,12 @@ export const unirseApuesta = async (req, res) => {
         return res.json({ message: 'Te has unido a la apuesta' });
     } catch (error) {
         return res.status(500).json({ 
-            message: `Error al unirse a apuesta, ${error.message}` 
+            message: "Error al unirse a apuesta" 
         });
     }
 };
 
-// Ejecutar PROC desde la db para obtener el id del usuario a 
-// el evento relacionado a apuesta
+// Obtener el id del usuario a el evento relacionado a apuesta
 export const obtenerEventosApuesta = async (req, res) => {
     const { id } = req.params;
     const id_usuario = req.user.id_usuario;
@@ -84,7 +81,7 @@ export const obtenerEventosApuesta = async (req, res) => {
         return res.json(eventos);
     } catch (error) {
         return res.status(500).json({ 
-             message: `Error al obtener evento de apuesta, ${error.message}` 
+             message: "Error al obtener evento de apuesta" 
         });
     }
 };
@@ -94,22 +91,16 @@ export const guardarPronostico = async (req, res) => {
     const { pts_local, pts_visitante } = req.body;
     const id_usuario = req.user.id_usuario;
 
-    if (pts_local === undefined 
-        || pts_local === null 
-        || pts_visitante === undefined 
-        || pts_visitante === null) {
-        return res.status(400).json({ 
-            message: 'Local y visitante son requeridos' 
-        });
+    if ([pts_local, pts_visitante].some(valor => valor === undefined || valor === null)) {
+        return res.status(400).json({ message: 'Campos son requeridos' });
     }
 
     const local = parseInt(pts_local, 10);
     const visitante = parseInt(pts_visitante, 10);
 
+    // Regresa un booleano si el valor no es un número o es negativo
     if (isNaN(local) || isNaN(visitante) || local < 0 || visitante < 0) {
-        return res.status(400).json({ 
-            message: 'Los valores no pueden ser negativos' 
-        });
+        return res.status(400).json({ message: 'Valores son invalidos' });
     }
 
     try {
@@ -120,9 +111,7 @@ export const guardarPronostico = async (req, res) => {
 
         const apuesta = await Apuesta.findByPk(evento.id_apuesta);
         if (apuesta.id_estado_apuesta !== 2) {
-            return res.status(400).json({ 
-                message: 'La apuesta ya empezo, no puedes registrar pronóstico' 
-            });
+            return res.status(400).json({ message: 'La apuesta ya empezo' });
         }
 
         const usuarioUnido = await UsuarioApuesta.findOne({ 
@@ -135,9 +124,7 @@ export const guardarPronostico = async (req, res) => {
             });
 
         if (evento.fecha && new Date(evento.fecha) <= new Date())
-            return res.status(400).json({ 
-                message: 'El evento ya comenzó, no puedes registrar pronóstico' 
-            });
+            return res.status(400).json({ message: 'El evento ya comenzó' });
 
         const existente = await Pronostico.findOne({ 
             where: { id_usuario, id_evento: id } 
@@ -162,12 +149,12 @@ export const guardarPronostico = async (req, res) => {
         });
     } catch (error) {
         return res.status(500).json({ 
-            message: `Error al guardar pronostico, ${error.message}` 
+            message: "Error al guardar pronostico" 
         });
     }
 };
 
-// llamar metodo de la DB para obtener el ranking de apuestas
+// Obtener el ranking de apuestas
 // por jugador
 export const obtenerParticipantesApuesta = async (req, res) => {
     const { id } = req.params;
@@ -186,21 +173,15 @@ export const obtenerParticipantesApuesta = async (req, res) => {
 
 export const obtenerRanking = async (req, res) => {
     const { id } = req.params;
-
     try {
-        const [ranking] = await sequelize.query(
-            `EXEC ObtenerRanking @id_apuesta = :id_apuesta`,
-            {
+        const [ranking] = await sequelize.query(`EXEC ObtenerRanking @id_apuesta = :id_apuesta`, {
                 replacements: { id_apuesta: id }
             }
         );
 
         return res.json(ranking);
     } catch (error) {
-        return res.status(500).json(
-        {
-            message: `Error al obtener puestos del ranking, ${error.message}`
-        });
+        return res.status(500).json({ message: "Error al obtener Ranking" });
     }
 };
 
@@ -210,7 +191,7 @@ export const obtenerRankingGlobal = async (req, res) => {
         return res.json(ranking);
     } catch (error) {
         return res.status(500).json({ 
-            message: `Error al obtener ranking global, ${error.message}` 
+            message: "Error al obtener ranking global"
         });
     }
 };
