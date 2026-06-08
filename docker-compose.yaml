@@ -6,15 +6,13 @@ services:
     ports:
       - "3000:3000"
     environment:
-      DB_SERVER: sqlserver
+      DB_SERVER: host.docker.internal
       DB_PORT: 1433
       DB_DATABASE: PROYECTO
       DB_USER: admin
       DB_PASSWORD: root
       SERVER_PORT: 3000
       JWT_SECRET: 47e65c0b9d220ea2083755a9800fa3936295c10ca014df9a2967fb16808669290ba54cafa18f776f0059f3a578e80b7ffd4cd416bb9f2a764e03692541b52b32
-    depends_on:
-      - sqlserver
 
   frontend:
     build:
@@ -25,13 +23,3 @@ services:
       VITE_API_URL: http://backend:3000
     depends_on:
       - backend
-
-  sqlserver:
-    build:
-      context: ./
-      dockerfile: database/Dockerfile
-    environment:
-      ACCEPT_EULA: "Y"
-      MSSQL_SA_PASSWORD: "root"
-    ports:
-      - "1433:1433"
