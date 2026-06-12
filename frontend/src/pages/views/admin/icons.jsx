@@ -1,4 +1,11 @@
-const stroke = { fill: 'none', stroke: 'currentColor', strokeWidth: '1.8', strokeLinecap: 'round', strokeLinejoin: 'round' };
+const stroke = { 
+    fill: 'none', 
+    stroke: 'currentColor', 
+    strokeWidth: '1.8', 
+    strokeLinecap: 'round', 
+    strokeLinejoin: 'round' 
+};
+
 const ico = (children) => <svg width="22" height="22" viewBox="0 0 24 24" {...stroke}>{children}</svg>;
 
 // Creados para el dock de navegación y otras secciones del admin

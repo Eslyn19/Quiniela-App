@@ -6,8 +6,8 @@ const MEDALLAS = ['🥇', '🥈', '🥉'];
 
 export default function SeccionRanking({ apuestas, getHeaders, username }) {
     const [selectedId, setSelectedId] = useState('');
-    const [ranking, setRanking]       = useState([]);
-    const [loading, setLoading]       = useState(false);
+    const [ranking, setRanking] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     const apuestasConParticipacion = apuestas.filter(a => !!a.ya_unido);
 
@@ -25,12 +25,10 @@ export default function SeccionRanking({ apuestas, getHeaders, username }) {
 
     return (
         <div className="player-seccion">
-
             <div data-aos="fade-down">
                 <h2 className="player-section-title">Ranking</h2>
                 <p className="player-section-sub">¿En qué posición estás?</p>
             </div>
-
             <div className="ranking-select-bar" data-aos="fade-up" data-aos-delay="60">
                 <select
                     className="ranking-select"
@@ -45,13 +43,11 @@ export default function SeccionRanking({ apuestas, getHeaders, username }) {
                     ))}
                 </select>
             </div>
-
             {!selectedId && (
                 <div data-aos="fade-up" data-aos-delay="120">
                     <EmptyState msg="Selecciona una apuesta en la que participes para ver el ranking." />
                 </div>
             )}
-
             {selectedId && (
                 <div className="ranking-wrap" data-aos="fade-up" data-aos-delay="80">
                     {apuestaSeleccionada && (
@@ -60,7 +56,6 @@ export default function SeccionRanking({ apuestas, getHeaders, username }) {
                             <span className="ranking-deporte">{apuestaSeleccionada.deporte}</span>
                         </div>
                     )}
-
                     {loading ? (
                         <p className="ranking-loading">Cargando ranking...</p>
                     ) : ranking.length === 0 ? (

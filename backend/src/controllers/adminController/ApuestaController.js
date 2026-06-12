@@ -15,57 +15,121 @@ export const obtenerApuestas = async (req, res) => {
     }
 };
 
-export const crearApuesta = async (req, res) =>{
-    const { nombre, 
-            descripcion, 
-            reglas, 
-            id_tipo_puntuacion,
-            id_estado_apuesta, 
-            fecha_inicio, 
-            fecha_fin } = req.body;
-
-    const camposRequeridos = [
-      nombre?.trim(),
-      descripcion?.trim(),
-      reglas?.trim(),
-      id_tipo_puntuacion,
-      id_estado_apuesta,
-      fecha_inicio,
-      fecha_fin
-    ];
-
-    if (camposRequeridos.some(campo => !campo)) {
-        return res.status(400).json({
-            message: 'Todos los campos son requeridos'
-        });
-    }
-
+export const crearApuesta = async (req, res) => {
     try {
-        // Crear la apuesta en admin
-        const nueva = await Apuesta.create({
-            nombre: nombre.trim(),
-            descripcion: descripcion.trim(),
-            reglas: reglas.trim(),
+        const {
+            nombre,
+            descripcion,
+            reglas,
+            id_equipo_local,
+            id_equipo_visitante,
             id_tipo_puntuacion,
             id_estado_apuesta,
             fecha_inicio,
-            fecha_fin,
-        });
-        // Crear el EVENTO asociado a la apuesta
-        await Evento.create({
-          id_apuesta: nueva.id_apuesta,
-          nombre: nombre.trim(),
-          fecha: fecha_inicio,
-        });
+            fecha_fin
+        } = req.body;
 
-        const [rows] = await sequelize.query(`EXEC ObtenerApuestaPorId @id_apuesta = :id`,{ 
-            replacements: { id: nueva.id_apuesta }});
+        const errores = [];
 
-        return res.status(201).json(rows[0]);
+        if (!nombre?.trim())
+            errores.push('nombre requerido');
+
+        if (!descripcion?.trim())
+            errores.push('descripcion requerida');
+
+        if (!reglas?.trim())
+            errores.push('reglas requeridas');
+
+        if (!id_equipo_local)
+            errores.push('id_equipo_local requerido');
+
+        if (!id_equipo_visitante)
+            errores.push('id_equipo_visitante requerido');
+
+        if (!id_tipo_puntuacion)
+            errores.push('id_tipo_puntuacion requerido');
+
+        if (!id_estado_apuesta)
+            errores.push('id_estado_apuesta requerido');
+
+        if (!fecha_inicio)
+            errores.push('fecha_inicio requerida');
+
+        if (!fecha_fin)
+            errores.push('fecha_fin requerida');
+
+        if (errores.length) {
+            return res.status(400).json({
+                message: 'Campos incompletos',
+                errors: errores
+            });
+        }
+
+        if (Number(id_equipo_local) === Number(id_equipo_visitante)) {
+            return res.status(400).json({
+                message: 'Los equipos deben ser distintos'
+            });
+        }
+
+        const inicio = new Date(fecha_inicio);
+        const fin = new Date(fecha_fin);
+
+        if (fin <= inicio) {
+            return res.status(400).json({
+                message: 'fecha_fin debe ser posterior a fecha_inicio'
+            });
+        }
+
+        const transaction = await sequelize.transaction();
+
+        try {
+            const nueva = await Apuesta.create(
+                {
+                    nombre: nombre.trim(),
+                    descripcion: descripcion.trim(),
+                    reglas: reglas.trim(),
+                    id_equipo_local: Number(id_equipo_local),
+                    id_equipo_visitante: Number(id_equipo_visitante),
+                    id_tipo_puntuacion: Number(id_tipo_puntuacion),
+                    id_estado_apuesta: Number(id_estado_apuesta),
+                    fecha_inicio: inicio,
+                    fecha_fin: fin
+                },
+                { transaction }
+            );
+
+            await Evento.create(
+                {
+                    id_apuesta: nueva.id_apuesta,
+                    nombre: nombre.trim(),
+                    fecha: inicio
+                },
+                { transaction }
+            );
+
+            const [rows] = await sequelize.query(
+                'EXEC ObtenerApuestaPorId @id_apuesta = :id',
+                {
+                    replacements: {
+                        id: nueva.id_apuesta
+                    },
+                    transaction
+                }
+            );
+
+            await transaction.commit();
+
+            return res.status(201).json(rows[0] || nueva);
+
+        } catch (txError) {
+            await transaction.rollback();
+            throw txError;
+        }
+
     } catch (error) {
-          return res.status(500).json({ 
-              message: `Error al crear apuesta, ${error.message}`  
-          });
+        return res.status(500).json({
+            message: `Error al crear apuesta, ${error.message}`
+        });
     }
 };
 

@@ -9,8 +9,8 @@
   --text-muted:  rgba(255, 255, 255, 0.62);
   --glass-bg:    rgba(4, 20, 13, 0.85);
   --glass-blur:  blur(18px) saturate(1.3);
-  --font-display: 'Orbitron', sans-serif;
-  --font-body:    'Orbitron', sans-serif;
+  --font-display: 'Orbitron', fallback, sans-serif;
+  --font-body:    'Orbitron', fallback, sans-serif;
 }
 
 /* ── Base ── */
@@ -109,7 +109,7 @@
   background: transparent;
   border: none;
   max-width: 100%;
-  padding: 56px 48px;
+  padding: 56px 52px;
   margin-bottom: 48px;
 }
 
@@ -121,7 +121,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 28px;
+  margin-bottom: 50px;
 }
 
 .section-header h2 {
@@ -164,7 +164,7 @@
 .testimonials-list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 15px;
   max-width: 1100px;
   margin: 0 auto;
 }
@@ -174,7 +174,6 @@
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   border: 1px solid var(--border-soft);
-  border-left: 4px solid var(--accent);
   border-radius: 12px;
   padding: 24px 28px;
   display: flex;
@@ -237,7 +236,6 @@
   backdrop-filter: blur(10px) saturate(1.2);
   -webkit-backdrop-filter: blur(10px) saturate(1.2);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-top: 2px solid var(--accent);
   border-radius: 30px;
   padding: 40px 48px;
 }
@@ -287,8 +285,8 @@
   height: 60px;
   object-fit: contain;
   padding: 8px;
-  border-radius: 12px;
-  border: 1px solid rgba(16, 185, 129, 0.25);
+  border-radius: 25px;
+  border: 4px solid rgba(16, 185, 129, 0.25);
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
@@ -348,7 +346,6 @@
 .pt-row strong { color: #fff; }
 
 .pt-divider {
-  border-top: 1px solid var(--border);
   margin: 10px 0;
 }
 
@@ -444,7 +441,6 @@
   backdrop-filter: blur(6px) saturate(1.1);
   -webkit-backdrop-filter: blur(6px) saturate(1.1);
   border: 2px solid rgba(255, 255, 255, 0.08);
-  border-top: 2px solid var(--accent);
   transition: background 0.22s, transform 0.18s, box-shadow 0.22s;
   --card-color: var(--accent);
 }

@@ -4,71 +4,71 @@ import "aos/dist/aos.css";
 import "../../../css/pagesCSS/Home.css";
 import FloatingLines from "../../../components/FloatingLines";
 import LoadingScreen from "../../../components/LoadingScreen";
-
+// Iconos 
 import sqlServerImg from "../../../assets/sql-server.png";
 import nodejsImg from "../../../assets/node.png";
 import reactImg from "../../../assets/react.png";
-import balonImg from "../../../assets/balon.png";
-import copaImg from "../../../assets/copa.png";
-
+import codeImg from "../../../assets/code.png";
+import githubImg from "../../../assets/github.png";
+// data
 import { TIPOS_PUNT, carouselSports, testimonials } from "./homeData";
 
 function TipoCard({ tipo }) {
-  return (
-    <div className="tipo-card" style={{ "--card-color": tipo.color }}>
-      <div className="tipo-icon">
-        <img src={tipo.imagen} alt={tipo.nombre} draggable={false} />
-      </div>
-      <p className="tipo-nombre">{tipo.nombre}</p>
-      <p className="tipo-desc">{tipo.desc}</p>
-    </div>
+    return (
+        <div className="tipo-card" style={{ "--card-color": tipo.color }}>
+            <div className="tipo-icon">
+                <img src={tipo.imagen} alt={tipo.nombre} draggable={false} />
+            </div>
+            <p className="tipo-nombre">{tipo.nombre}</p>
+            <p className="tipo-desc">{tipo.desc}</p>
+        </div>  
   );
 }
 
 function SportItem({ sport }) {
-  return (
-    <div className="sport-item" style={{ "--sport-color": sport.color }} title={`Grupo ${sport.grupo} — ${sport.name}`}>
-      <div className="sport-circle">
-        <img src={sport.svg} alt={sport.name} className="sport-svg" draggable={false} />
-      </div>
-    </div>
-  );
+    return (
+        <div className="sport-item" style={{ "--sport-color": sport.color }} title={`Grupo ${sport.grupo} — ${sport.name}`}>
+            <div className="sport-circle">
+                <img src={sport.svg} alt={sport.name} className="sport-svg" draggable={false} />
+            </div>
+        </div>
+    );
 }
 
 function TestimonialRow({ testimonio, index }) {
-  return (
-    <div className="testimonial-row" data-aos="fade-up" data-aos-delay={index * 80}>
-      <div className="testimonial-avatar">
-        {testimonio.country} <strong>{testimonio.name}</strong>
-      </div>
-      <p className="testimonial-text">"{testimonio.text}"</p>
-      <div className="testimonial-stars">
-        {"★".repeat(testimonio.stars)}{"☆".repeat(5 - testimonio.stars)}
-      </div>
-    </div>
-  );
+    return (
+        <div className="testimonial-row" data-aos="fade-up" data-aos-delay={index * 80}>
+            <div className="testimonial-avatar">
+                {testimonio.country} <strong>{testimonio.name}</strong>
+            </div>
+                <p className="testimonial-text">"{testimonio.text}"</p>
+            <div className="testimonial-stars">
+                {"★".repeat(testimonio.stars)}{"☆".repeat(5 - testimonio.stars)}
+            </div>
+        </div>
+    );
 }
 
 function BetRow({ bet, index }) {
-  return (
-    <div className={`bet-row ${bet.hot ? "hot" : ""}`} data-aos="fade-up" data-aos-delay={index * 80}>
-      <div className="bet-left">
-        {bet.hot && <span className="hot-badge">🔥 Popular</span>}
-        <div className="bet-tipo">
-          <span className="bet-tipo-icon">{bet.icon}</span>
-          <span className="bet-tipo-text">{bet.tipo}</span>
-          <span className="bet-liga-badge">{bet.liga}</span>
+    return (
+        <div className={`bet-row ${bet.hot ? "hot" : ""}`} data-aos="fade-up" data-aos-delay={index * 80}>
+            <div className="bet-left">
+              {bet.hot && <span className="hot-badge">🔥 Popular</span>}
+                <div className="bet-tipo">
+                    <span className="bet-tipo-icon">{bet.icon}</span>
+                    <span className="bet-tipo-text">{bet.tipo}</span>
+                    <span className="bet-liga-badge">{bet.liga}</span>
+                </div>
+                <span className="bet-match">{bet.match}</span>
+              </div>
+              <div className="bet-right">
+                  <div className="bet-pred-block">
+                      <span className="bet-pred-label">Pronóstico</span>
+                      <span className="bet-pred-value">{bet.pred}</span>
+                  </div>
+              </div>
         </div>
-        <span className="bet-match">{bet.match}</span>
-      </div>
-      <div className="bet-right">
-        <div className="bet-pred-block">
-          <span className="bet-pred-label">Pronóstico</span>
-          <span className="bet-pred-value">{bet.pred}</span>
-        </div>
-      </div>
-    </div>
-  );
+    );
 }
 
 export default function Home() {
@@ -86,74 +86,71 @@ export default function Home() {
   }, []);
 
   return (
-    <>
-      {showLoader && <LoadingScreen fadeOut={fadeOut} />}
-      <div className="home">
-
-        <div className="home-galaxy">
-          <FloatingLines
-
-linesGradient={["#0f3d1f", "#1a6b3a", "#4a5a6a"]}
-            enabledWaves={["top", "middle", "bottom"]}
-            lineCount={8}
-            lineDistance={8}
-            bendRadius={8}
-            bendStrength={-2}
-            interactive
-            parallax={true}
-            animationSpeed={1}
-          />
-        </div>
-
+      <>
+          {showLoader && <LoadingScreen fadeOut={fadeOut} />}
+          <div className="home">
+              <div className="home-galaxy">
+                  { /* Efecto de líneas flotantes con gradiente y parallax */ }
+                  <FloatingLines linesGradient={["#0f3d1f", "#1a6b3a", "#4a5a6a"]}
+                      enabledWaves={["top", "middle", "bottom"]}
+                      lineCount={8}
+                      lineDistance={8}
+                      bendRadius={8}
+                      bendStrength={-2}
+                      interactive
+                      parallax={true}
+                      animationSpeed={1}
+                    />
+              </div>
+        {/* Sección de tipos de puntuación */ }
         <section className="tipos-punt-section">
-          <div className="tipos-punt-header">
-            <span className="tipos-punt-label">SISTEMA DE PUNTUACIÓN</span>
-            <h3 className="tipos-punt-title">¿Cómo ganar puntos?</h3>
-          </div>
-          <div className="tipos-punt-grid">
-            {TIPOS_PUNT.map((t, i) => <TipoCard key={i} tipo={t} />)}
-          </div>
-        </section>
-
-        <section id="sec-selecciones" className="carousel-section" aria-label="Selecciones Copa del Mundo 2026">
-          <div className="carousel-track">
-            {carouselSports.map((s, i) => <SportItem key={i} sport={s} />)}
-          </div>
-        </section>
-
-        <section id="sec-sobre" className="section about-section">
-          <div className="about-centered" data-aos="fade-up" data-aos-offset="0">
-            <span className="tipos-punt-label">PROYECTO ACADÉMICO</span>
-            <h2>Quiniela Copa del Mundo 2026</h2>
-            <p>
-              Plataforma de quinielas desarrollada para el curso de <strong>Bases de Datos</strong>, con temática
-              exclusiva de la <strong>Copa del Mundo FIFA 2026</strong>, organizada en México, Canadá y Estados Unidos.
-              Aplica conceptos avanzados de diseño relacional, procedimientos almacenados y gestión de usuarios.
-            </p>
-            <p>
-              Registrate, predice los marcadores de los 64 partidos del torneo y acumula puntos para escalar
-              en el ranking. Los administradores gestionan eventos, ingresan resultados y configuran los
-              parámetros de puntuación directamente desde el panel de control.
-            </p>
-            <div className="about-tags">
-              <img src={sqlServerImg} alt="SQL Server" />
-              <img src={nodejsImg} alt="Node.js" />
-              <img src={reactImg} alt="React" />
-              <img src={balonImg} alt="Balón" />
-              <img src={copaImg} alt="Copa del Mundo" />
+            <div className="tipos-punt-header">
+                <span className="tipos-punt-label">SISTEMA DE PUNTUACIÓN</span>
+                <h3 className="tipos-punt-title">¿Cómo ganar puntos?</h3>
             </div>
-          </div>
+            <div className="tipos-punt-grid">
+                {TIPOS_PUNT.map((t, i) => <TipoCard key={i} tipo={t} />)}
+            </div>
         </section>
-
+        {/* Sección de selecciones en carrusel horizontal */ }
+        <section id="sec-selecciones" className="carousel-section" aria-label="Selecciones Copa del Mundo 2026">
+            <div className="carousel-track">
+               {carouselSports.map((s, i) => <SportItem key={i} sport={s} />)}
+            </div>
+        </section>
+        {/* Sección de descripción del proyecto */ }
+        <section id="sec-sobre" className="section about-section">
+            <div className="about-centered" data-aos="fade-up" data-aos-offset="0">
+                <span className="tipos-punt-label">PROYECTO ACADÉMICO</span>
+                <h2>Quiniela Copa del Mundo 2026</h2>
+                <p>
+                    Plataforma de quinielas desarrollada para el curso de <strong>Bases de Datos</strong>, con temática
+                    exclusiva de la <strong>Copa del Mundo FIFA 2026</strong>, organizada en México, Canadá y Estados Unidos.
+                    Aplica conceptos avanzados de diseño relacional, procedimientos almacenados y gestión de usuarios.
+                </p>
+                <p>
+                    Registrate, predice los marcadores de los 64 partidos del torneo y acumula puntos para escalar
+                    en el ranking. Los administradores gestionan eventos, ingresan resultados y configuran los
+                    parámetros de puntuación directamente desde el panel de control.
+                </p>
+                <div className="about-tags">
+                    <img src={sqlServerImg} alt="SQL Server" />
+                    <img src={nodejsImg} alt="Node.js" />
+                    <img src={reactImg} alt="React" />
+                     <img src={githubImg} alt="Github" />
+                    <img src={codeImg} alt="Código" />
+                </div>
+            </div>
+        </section>
+        {/* Sección de testimonios con animaciones al hacer scroll */ }
         <section id="sec-testimonios" className="section testimonials-section">
-          <div className="section-header" data-aos="fade-right">
-            <h2>Testimonios</h2>
-          </div>
-          <div className="testimonials-list">
-            {testimonials.map((t, i) => <TestimonialRow key={i} testimonio={t} index={i} />)}
-          </div>
+            <div className="section-header" data-aos="fade-right">
+                <h2>Testimonios</h2>
+            </div>
+            <div className="testimonials-list">
+                {testimonials.map((t, i) => <TestimonialRow key={i} testimonio={t} index={i} />)}
+            </div>
         </section>
-
       </div>
     </>
   );

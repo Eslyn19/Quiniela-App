@@ -34,7 +34,11 @@ export default function ResetPassword() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const errorValidacion = validateResetPassword(form);
-        if (errorValidacion) { setToast({ message: errorValidacion, type: 'error' }); return; }
+        
+        if (errorValidacion) { 
+            setToast({ message: errorValidacion, type: 'error' });
+            return; 
+        }
 
         setLoading(true);
         try {
@@ -58,7 +62,7 @@ export default function ResetPassword() {
                 <div className="login-card">
                     <h1 className="login-title">Restablecer contraseña</h1>
                     <form className="login-form" onSubmit={handleSubmit} autoComplete="off">
-
+                        { /* Usuario y contrasena actual */}
                         <div className="input-row">
                             <div className="input-group">
                                 <label>Usuario</label>
@@ -84,7 +88,7 @@ export default function ResetPassword() {
                                 </div>
                             </div>
                         </div>
-
+                        { /* Nueva contraseña */ }
                         <div className="input-group">
                             <label>Nueva contraseña</label>
                             <div className="password-wrapper">
@@ -99,7 +103,7 @@ export default function ResetPassword() {
                                 </button>
                             </div>
                         </div>
-
+                        {/* Confirmar contrasena */}
                         <div className="input-group">
                             <label>Confirmar contraseña</label>
                             <div className="password-wrapper">

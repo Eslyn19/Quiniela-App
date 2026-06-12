@@ -55,7 +55,7 @@ export default function Login() {
                 <div className="login-card">
                     <h1 className="login-title">Login</h1>
                     <form className="login-form" onSubmit={handleSubmit} autoComplete="off">
-
+                        {/* Usuario */}
                         <div className="input-group">
                             <label>Usuario</label>
                             <input
@@ -65,7 +65,7 @@ export default function Login() {
                                 onChange={handleChange}
                             />
                         </div>
-
+                        {/* Contraseña */}
                         <div className="input-group">
                             <label>Contraseña</label>
                             <div className="password-wrapper">
@@ -75,6 +75,7 @@ export default function Login() {
                                     value={form.password}
                                     onChange={handleChange}
                                 />
+                                {/* Botón para mostrar/ocultar contraseña */}
                                 <button
                                     type="button"
                                     className="password-toggle"
@@ -89,7 +90,7 @@ export default function Login() {
                         <button className="login-btn" disabled={loading}>
                             {loading ? 'Cargando...' : 'Iniciar sesión'}
                         </button>
-
+                        
                         <p className="signup-prompt">
                             ¿No tienes cuenta? <a href="/register">Regístrate</a>
                         </p>

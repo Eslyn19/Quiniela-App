@@ -9,9 +9,16 @@ import { buildRegisterPayload, registerUser } from '../../../services/authServic
 import './Register.css';
 import homeImg from "../../../assets/home.png";
 
-const formulario = { primer_nombre: '', segundo_nombre: '', primer_apellido: '',
-    segundo_apellido: '', fecha_nacimiento: '', correo_electronico: '', username: '',
-    password: '', password_confirm: ''
+const formulario = { 
+    primer_nombre: '', 
+    segundo_nombre: '', 
+    primer_apellido: '',
+    segundo_apellido: '', 
+    fecha_nacimiento: '', 
+    correo_electronico: '', 
+    username: '',
+    password: '', 
+    password_confirm: ''
 };
 
 export default function Register() {
@@ -29,13 +36,17 @@ export default function Register() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const validationError = validateRegisterForm(form);
-        if (validationError) { setToast({ message: validationError, type: 'error' }); return; }
+        const validationError = validateRegisterForm(form); // validar desde el backend
+        
+        if (validationError) { 
+            setToast({ message: validationError, type: 'error' }); // ventana de errores
+            return; 
+        }
 
         setIsSubmitting(true);
         try {
             const payload = buildRegisterPayload(form);
-            await registerUser(payload);
+            await registerUser(payload); // registrar desde service del backend
             setForm(formulario);
             setToast({ message: '¡Registro exitoso! Un administrador revisará tu solicitud.', type: 'success' });
         } catch (error) {
@@ -63,12 +74,13 @@ export default function Register() {
                 disableRotation={false}
                 pixelRatio={1}
             />
+            {/* div con estilo AOS*/}
             <div className="register-center" data-aos="flip-right">
                 <div className="register-card">
                     <h1 className="register-title">Crear cuenta</h1>
-
+                    {/* Formulario de registro */}
                     <form className="register-form" onSubmit={handleSubmit} autoComplete="off">
-
+                        { /* Nombres de persona */ }
                         <div className="input-row">
                             <div className="input-group">
                                 <label>Primer nombre</label>
@@ -81,7 +93,7 @@ export default function Register() {
                                 value={form.segundo_nombre} onChange={handleChange} />
                             </div>
                         </div>
-
+                        { /* Apellidos de persona */}
                         <div className="input-row">
                             <div className="input-group">
                                 <label>Primer apellido</label>
@@ -94,31 +106,31 @@ export default function Register() {
                                 value={form.segundo_apellido} onChange={handleChange}/>
                             </div>
                         </div>
-
+                        { /* Fecha de nacimiento */ }
                         <div className="input-group">
                             <label>Fecha de nacimiento</label>
                             <input type="date" name="fecha_nacimiento" value={form.fecha_nacimiento} 
                             onChange={handleChange} required />
                         </div>
-
+                        { /* Correo electrónico */ }
                         <div className="input-group">
                             <label>Correo electrónico</label>
                             <input type="email" name="correo_electronico" value={form.correo_electronico}
                             onChange={handleChange} required />
                         </div>
-
+                        { /* Nombre de usuario */ }
                         <div className="input-group">
                             <label>Nombre de usuario</label>
                             <input type="text" name="username" value={form.username}
                             onChange={handleChange} required />
                         </div>
-
+                        { /* Contraseña */ }
                         <div className="input-group">
                             <label>Contraseña</label>
                             <input type="password" name="password" value={form.password} 
                             onChange={handleChange} required />
                         </div>
-
+                        { /* Contraseña y confirmación */ }
                         <div className="input-group">
                             <label>Confirmar contraseña</label>
                             <input type="password" name="password_confirm" value={form.password_confirm} 

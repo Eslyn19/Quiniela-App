@@ -5,18 +5,21 @@ const estadoColor = { PENDIENTE: '#f59e0b', ENTREGADO: '#22c55e', RECHAZADO: '#e
 const estadoIcon  = { PENDIENTE: '⏳', ENTREGADO: '✅', RECHAZADO: '❌' };
 
 export default function SeccionPremios({ getHeaders }) {
-    const [tab, setTab]             = useState('tienda');
-    const [premios, setPremios]     = useState([]);
-    const [canjes, setCanjes]       = useState([]);
-    const [puntos, setPuntos]       = useState({ disponible: 0, total: 0, gastado: 0 });
-    const [loading, setLoading]     = useState(true);
+    const [tab, setTab] = useState('tienda');
+    const [premios, setPremios] = useState([]);
+    const [canjes, setCanjes] = useState([]);
+    const [puntos, setPuntos] = useState({ disponible: 0, total: 0, gastado: 0 });
+    const [loading, setLoading]  = useState(true);
     const [canjeando, setCanjeando] = useState(null);
-    const [msg, setMsg]             = useState(null);
-    const [lightbox, setLightbox]   = useState(null); // { src, alt }
+    const [msg, setMsg] = useState(null);
+    const [lightbox, setLightbox] = useState(null); // { src, alt }
 
     useEffect(() => {
         if (!lightbox) return;
-        const onKey = (e) => { if (e.key === 'Escape') setLightbox(null); };
+        const onKey = (e) => { 
+            if (e.key === 'Escape') 
+                setLightbox(null); 
+            };
         document.addEventListener('keydown', onKey);
         return () => document.removeEventListener('keydown', onKey);
     }, [lightbox]);
@@ -25,9 +28,9 @@ export default function SeccionPremios({ getHeaders }) {
         setLoading(true);
         try {
             const [rP, rPts, rC] = await Promise.all([
-                fetch(`${API}/api/player/premios`,        { headers: getHeaders() }),
+                fetch(`${API}/api/player/premios`, { headers: getHeaders() }),
                 fetch(`${API}/api/player/premios/puntos`, { headers: getHeaders() }),
-                fetch(`${API}/api/player/mis-canjes`,     { headers: getHeaders() }),
+                fetch(`${API}/api/player/mis-canjes`, { headers: getHeaders() }),
             ]);
             const [pData, ptsData, cData] = await Promise.all([rP.json(), rPts.json(), rC.json()]);
             setPremios(Array.isArray(pData) ? pData : []);
@@ -97,7 +100,6 @@ export default function SeccionPremios({ getHeaders }) {
                     </div>
                 </div>
             </div>
-
             {/* ── Tabs ── */}
             <div className="ps-tabs" data-aos="fade-up">
                 {['tienda', 'mis-canjes'].map(t => (
@@ -113,14 +115,12 @@ export default function SeccionPremios({ getHeaders }) {
                     </button>
                 ))}
             </div>
-
             {/* ── Feedback ── */}
             {msg && (
                 <div className={`ps-msg ${msg.tipo}`} data-aos="fade-in">
                     {msg.tipo === 'ok' ? '✓ ' : '✗ '}{msg.texto}
                 </div>
             )}
-
             {/* ── Tienda ── */}
             {tab === 'tienda' && (
                 <div className="ps-grid" data-aos="fade-up">
@@ -132,10 +132,10 @@ export default function SeccionPremios({ getHeaders }) {
                         </div>
                     ) : premios.map((p, idx) => {
                         const disponible = premioDisponible(p);
-                        const sinPuntos  = puntos.disponible < p.costo_puntos;
-                        const bloqueado  = !disponible || sinPuntos;
-                        const src        = imgSrc(p);
-                        const progreso   = Math.min(100, Math.round((puntos.disponible / p.costo_puntos) * 100));
+                        const sinPuntos = puntos.disponible < p.costo_puntos;
+                        const bloqueado = !disponible || sinPuntos;
+                        const src = imgSrc(p);
+                        const progreso = Math.min(100, Math.round((puntos.disponible / p.costo_puntos) * 100));
 
                         return (
                             <div
@@ -226,7 +226,6 @@ export default function SeccionPremios({ getHeaders }) {
                     })}
                 </div>
             )}
-
             {/* ── Mis Canjes ── */}
             {tab === 'mis-canjes' && (
                 <div className="ps-canjes" data-aos="fade-up">
@@ -277,7 +276,7 @@ export default function SeccionPremios({ getHeaders }) {
                         src={lightbox.src}
                         alt={lightbox.alt}
                         style={{
-                            maxWidth: '90vw', maxHeight: '90vh',
+                            maxWidth: '90vw', maxHeight: '60vh',
                             objectFit: 'contain',
                             borderRadius: 8,
                             boxShadow: '0 8px 48px rgba(0,0,0,0.8)',

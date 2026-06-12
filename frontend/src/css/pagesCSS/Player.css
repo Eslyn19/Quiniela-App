@@ -1433,32 +1433,29 @@
     filter: grayscale(0.4);
 }
 
-/* Imagen */
 .ps-card-img {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    background: linear-gradient(135deg, rgba(220,38,38,0.12), rgba(10,3,5,0.6));
+    height: 220px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     overflow: hidden;
 }
 
 .ps-card-img img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.4s ease;
+    object-fit: contain;
 }
 
-.ps-card:hover .ps-card-img img { transform: scale(1.05); }
+.ps-card:hover .ps-card-img img { transform: scale(1.00); }
 
 .ps-card-img--fallback,
 .ps-card-img-placeholder {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    height: 100%;
+    width: 50%;
+    height: 50%;
     font-size: 3rem;
     background: linear-gradient(135deg, rgba(220,38,38,0.08), rgba(10,3,5,0.5));
 }
