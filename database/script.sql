@@ -492,49 +492,49 @@ INSERT INTO PREMIO (NOMBRE, DESCRIPCION, COSTO_PUNTOS, STOCK, ACTIVO, IMAGEN_URL
 (
     'Réplica Copa del Mundo',
     'Réplica oficial de la Copa del Mundo FIFA. El trofeo más icónico del fútbol, edición coleccionable de alta calidad.',
-    500, 5, 1,
+    10, 5, 1,
     '/uploads/premios/ReplicaCopa.jpg'
 ),
 (
     'Camiseta Local España FWC 2026',
     'Camiseta oficial Adidas de la selección española, edición local para la Copa del Mundo 2026. Blanca con detalles en rojo y dorado.',
-    300, 10, 1,
+    5, 10, 1,
     '/uploads/premios/EspanaLocalFW2026.jpg'
 ),
 (
     'Camiseta Local Alemania FWC 2026',
     'Camiseta oficial Adidas de la selección alemana, edición local para la Copa del Mundo 2026. Blanca con diseño de rombos y los cuatro estrellas.',
-    300, 10, 1,
+    5, 10, 1,
     '/uploads/premios/AlemaniaLocalFWC2026.jpg'
 ),
 (
     'Álbum Panini + Caja de Sobres FWC 2026',
     'Combo oficial Panini: álbum de figuritas FIFA World Cup 2026 + caja de 50 sobres. Colecciona las 648 figuritas del torneo.',
-    150, 20, 1,
+    10, 20, 1,
     '/uploads/premios/Album+Cubo.jpg'
 ),
 (
     'Caja de Sobres Panini FWC 2026',
     'Caja oficial Panini con 50 sobres de figuritas FIFA World Cup 2026. Ideal para completar el álbum o intercambiar.',
-    80, 30, 1,
+    5, 30, 1,
     '/uploads/premios/Cubo.jpg'
 ),
 (
     'Peluche Mascota Clutch (USA)',
     'Peluche oficial de Clutch, la mascota del equipo anfitrión Estados Unidos para el Mundial 2026. Águila con camiseta azul del #10.',
-    100, 15, 1,
+    1, 15, 1,
     '/uploads/premios/Clutch.jpg'
 ),
 (
     'Peluche Mascota Maple (Canadá)',
     'Peluche oficial de Maple, la mascota del equipo anfitrión Canadá para el Mundial 2026. Alce con camiseta roja del #1.',
-    100, 15, 1,
+    1, 15, 1,
     '/uploads/premios/Maple.jpg'
 ),
 (
     'Peluche Mascota Zayu (México)',
     'Peluche oficial de Zayu, la mascota del equipo anfitrión México para el Mundial 2026. Jaguar con camiseta verde del #9.',
-    100, 15, 1,
+    1, 15, 1,
     '/uploads/premios/Zayu.webp'
 );
 GO

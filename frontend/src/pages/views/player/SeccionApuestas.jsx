@@ -424,6 +424,12 @@ export default function SeccionApuestas({ apuestas, setApuestas, getHeaders }) {
                     const isJoined  = !!a.ya_unido;
                     const canJoin   = isOpen && !isJoined && !yaComenzo;
 
+                    const horaInicio = new Date(a.fecha_inicio).toLocaleTimeString([], { 
+                        hour: '2-digit', 
+                        minute: '2-digit',
+                        hour12: false 
+                    });
+
                     return (
                         <div
                             key={a.id_apuesta}
@@ -445,7 +451,9 @@ export default function SeccionApuestas({ apuestas, setApuestas, getHeaders }) {
                                 </div>
                                 <h3 className="bet-card-nombre">{a.nombre}</h3>
                                 <p className="bet-card-deporte">{a.deporte} · {a.tipo_puntuacion}</p>
-                                <p className="bet-card-fechas">{fmtDate(a.fecha_inicio)}</p>
+                                <p className="bet-card-fechas">
+                                    Comienza: {fmtDate(a.fecha_inicio)} · {horaInicio} hs
+                                </p>
                                 <p className="bet-card-desc">{a.descripcion}</p>
                                 {a.estado === 'FINALIZADA' && a.resultado_oficial && (
                                     <p className="bet-card-resultado">
